@@ -1,2 +1,4 @@
+# Intellij IDEA Files
 .idea/
+*.iml
 out/
