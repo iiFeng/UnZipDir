@@ -8,7 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        String zipFilePath="/Users/huangxiaofeng/IdeaProjects/learn-java/practices/Java教程/10.Java快速入门.1255883772263712/10.Java简介.1255876875896416/40.使用IDE练习插件.1266092093733664/hello.zip";
+        String zipFilePath="/home/user/hello1.zip";
+        //String zipFilePath="/Users/huangxiaofeng/IdeaProjects/learn-java/practices/Java教程/10.Java快速入门.1255883772263712/10.Java简介.1255876875896416/40.使用IDE练习插件.1266092093733664/hello.zip";
         String destDir="";
         unzip(zipFilePath,destDir);
     }
