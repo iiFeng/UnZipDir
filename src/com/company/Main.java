@@ -7,31 +7,34 @@ import java.util.zip.ZipInputStream;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        String zipFilePath="/home/user/hello1.zip";
-        //String zipFilePath="/Users/huangxiaofeng/IdeaProjects/learn-java/practices/Java教程/10.Java快速入门.1255883772263712/10.Java简介.1255876875896416/40.使用IDE练习插件.1266092093733664/hello.zip";
-        String destDir="";
-        unzip(zipFilePath,destDir);
+        if (args.length != 1) {
+            System.err.println("add file path");
+            System.exit(1);
+        }
+        unzip(args[0],args[1]);
     }
-    //传入已经解压好的文件夹
-    //打包好的文件夹
-    public static void unzip(String zipFilePath, String destDir) {
-        File dir = new File(destDir);
-        // create output directory if it doesn't exist
-        if (!dir.exists()) {
-            dir.mkdirs();
+
+    //传入一个压缩文件或目录
+    public static void unzip(String filePath,String outputDir) {
+        //压缩文件则创建文件夹
+        if (filePath.matches("[.zip]")) {
+            File dir = new File(outputDir);
+            // create output directory if it doesn't exist
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
         }
         FileInputStream fis;
         //buffer for read and write data to file
         byte[] buffer = new byte[1024];
         try {
-            fis = new FileInputStream(zipFilePath);
+            fis = new FileInputStream(filePath);
             ZipInputStream zip = new ZipInputStream(fis);
             //如果是压缩文件
             ZipEntry entry = zip.getNextEntry();
             while (entry != null) {
                 String fileName = entry.getName();
-                File newFile = new File(destDir + File.separator + fileName);
+                File newFile = new File(outputDir + File.separator + fileName);
                 System.out.println("Unzipping to " + newFile.getAbsolutePath());
                 //create directories for sub directories in zip
                 new File(newFile.getParent()).mkdirs();
@@ -54,4 +57,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }
